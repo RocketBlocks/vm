@@ -24,40 +24,22 @@ class AdditionsBlocks {
      */
     getInfo () {
         return {
-            id: 'rocket_additions',
+            id: 'additions',
             name: 'Additions',
             color1: '#ff4c4c',
             color2: '#e64444',
             color3: '#e64444',
-            docsURI: 'https://docs.turbowarp.org/blocks',
-            menuIconURI: iconURI,
-            blockIconURI: iconURI,
+            docsURI: '',
             blocks: [
                 {
                     opcode: 'getLastKeyPressed',
                     text: formatMessage({
-                        id: 'rocket_additions.blocks.lastKeyPressed',
-                        default: 'last key pressed',
-                        description: 'Block that returns the last key that was pressed'
+                        id: 'rocket_additions.blocks.testBlock',
+                        default: 'testBlock',
+                        description: 'A test block!'
                     }),
                     blockType: BlockType.REPORTER
                 },
-                {
-                    opcode: 'getButtonIsDown',
-                    text: formatMessage({
-                        id: 'rocket_additions.blocks.buttonIsDown',
-                        default: '[MOUSE_BUTTON] mouse button down?',
-                        description: 'Block that returns whether a specific mouse button is down'
-                    }),
-                    blockType: BlockType.BOOLEAN,
-                    arguments: {
-                        MOUSE_BUTTON: {
-                            type: ArgumentType.NUMBER,
-                            menu: 'mouseButton',
-                            defaultValue: '0'
-                        }
-                    }
-                }
             ],
             menus: {
                 mouseButton: {
