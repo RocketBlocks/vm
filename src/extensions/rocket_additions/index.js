@@ -11,7 +11,7 @@ const iconURI = `data:image/svg+xml;base64,${btoa('<svg xmlns="http://www.w3.org
  * @constructor
  */
 class AdditionsBlocks {
-    constructor (runtime) {
+    constructor(runtime) {
         /**
          * The runtime instantiating this block package.
          * @type {Runtime}
@@ -22,7 +22,7 @@ class AdditionsBlocks {
     /**
      * @returns {object} metadata for this extension and its blocks.
      */
-    getInfo () {
+    getInfo() {
         return {
             id: 'additions',
             name: 'Additions',
@@ -34,11 +34,22 @@ class AdditionsBlocks {
                 {
                     opcode: 'getLastKeyPressed',
                     text: formatMessage({
-                        id: 'rocket_additions.blocks.testBlock',
-                        default: 'testBlock',
+                        id: 'rocket_additions.blocks.isRocket',
+                        default: 'isRocket',
+                        value: 'true',
                         description: 'A test block!'
                     }),
-                    blockType: BlockType.REPORTER
+                    arguments: {
+                        text: {
+                            type: ArgumentType.STRING,
+                            defaultValue: formatMessage({
+                                id: 'rocket_additions.defaultValue',
+                                default: 'true',
+                                description: 'defaultValue',
+                            })
+                        },
+                    },
+                    blockType: BlockType.BOOLEAN
                 },
             ],
             menus: {
@@ -75,11 +86,11 @@ class AdditionsBlocks {
         };
     }
 
-    getLastKeyPressed (args, util) {
+    getLastKeyPressed(args, util) {
         return util.ioQuery('keyboard', 'getLastKeyPressed');
     }
 
-    getButtonIsDown (args, util) {
+    getButtonIsDown(args, util) {
         const button = Cast.toNumber(args.MOUSE_BUTTON);
         return util.ioQuery('mouse', 'getButtonIsDown', [button]);
     }
